@@ -1,23 +1,27 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [newCount, setNewCount] = useState(0);
+
+  useEffect(() => {
+    console.log("I'm rendering");
+  }, [count]);
 
   const add = () => {
     setCount((prev) => prev + 1);
     setCount((prev) => prev + 1);
-
     // setCount(count + 1);
     // setCount(count + 1);
   };
+
   const minus = () => {
-    setCount(count - 1);
+    setNewCount(newCount - 1);
   };
 
-  console.log("I'm rendering");
   return (
     <SafeAreaProvider style={styles.container}>
       <SafeAreaView>
