@@ -1,49 +1,46 @@
 import { StatusBar } from "expo-status-bar";
-import { useState, useEffect, useCallback } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import Total from "./Total";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback, useEffect, useState } from "react";
 
-const App = () => {
-  const [numSandwiches, setNumSandwiches] = useState(0);
-  const [numWater, setNumWater] = useState(0);
+SplashScreen.preventAutoHideAsync();
 
-  const sandwichPrice = 5;
+export default function App() {
+  const [appIsLoaded, setAppIsLoaded] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    //Load Fonts
+    setTimeout(() => {
+      console.log("Setting App is loaded");
+      setAppIsLoaded(true);
+    }, 2000);
+    //2000 ms = 2second
+  });
 
-  const addSandwiches = () => {
-    setNumSandwiches((numSandwiches) => numSandwiches + 1);
-  };
+  const onLayout = useCallback(async () => {
+    if (appIsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsLoaded]);
+  //eger await key wordu kullancaksak function içinde async kulllanmalıyız
 
-  const addWater = () => {
-    setNumWater((numWater) => numWater + 1);
-  };
+  if (!appIsLoaded) {
+    return null;
+  }
 
-  const getTotal = useCallback(() => {
-    return numSandwiches * sandwichPrice;
-  }, [numSandwiches]);
-
-  // const getTotal = () => {
-  //   return numSandwiches * sandwichPrice;
-  // };
   return (
-    <SafeAreaProvider style={styles.container}>
+    <SafeAreaProvider
+      style={styles.container}
+      onLayout={onLayout}
+    >
       <SafeAreaView>
         <StatusBar style="auto" />
-        <Text style={styles.text}> {"Sandiwches: " + numSandwiches} </Text>
-        <Button title="Add Sandwiches" onPress={addSandwiches} />
-
-        <Text style={styles.text}> {"Water: " + numWater} </Text>
-        <Button title="Add Water" onPress={addWater} />
-
-        <Total getTotal={getTotal} />
+        <Text style={styles.text}> Hello everyone! </Text>
       </SafeAreaView>
     </SafeAreaProvider>
   );
-};
-
-export default App;
+}
 
 const styles = StyleSheet.create({
   container: {
