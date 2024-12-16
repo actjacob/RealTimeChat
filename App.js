@@ -1,8 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useEffect, useState } from "react";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback, useEffect, useState } from 'react';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -12,7 +12,7 @@ export default function App() {
   useEffect(() => {
     //Load Fonts
     setTimeout(() => {
-      console.log("Setting App is loaded");
+      console.log('Setting App is loaded');
       setAppIsLoaded(true);
     }, 2000);
     //2000 ms = 2second
@@ -45,13 +45,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
-    color: "#3498db",
+    color: '#3498db',
     fontSize: 24,
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
