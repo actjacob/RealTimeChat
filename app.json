@@ -4,11 +4,11 @@
     "slug": "RealTimeChat",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/SplashScreen.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/SplashScreen.png",
+      "image": "./assets/adaptive-icon.png",
       "resizeMode": "cover",
       "backgroundColor": "#00df58"
     },

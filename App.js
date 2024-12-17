@@ -1,16 +1,15 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
-
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import ChatListScreen from './screens/ChatListScreen';
-
+import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
+import ChatListScreen from './screens/ChatListScreen';
+import ChatSettingsScreen from './screens/ChatSettingsScreen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -58,22 +57,24 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider
-      style={styles.container}
-      onLayout={onLayout}
-    >
+    <SafeAreaProvider onLayout={onLayout}>
       <StatusBar style="auto" />
+      {/* <SafeAreaView> */}
       <NavigationContainer>
-        <SafeAreaView>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={ChatListScreen}
-            />
-          </Stack.Navigator>
-          <Text style={styles.text}> Hello everyone! </Text>
-        </SafeAreaView>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={ChatListScreen} />
+          <Stack.Screen
+            name="ChatSettings"
+            component={ChatSettingsScreen}
+            options={{
+              headerTitle: 'Settings',
+              //headerBackTitle: 'Back', androidde çalışmadı ancak iOS emilatorde çalıştı
+              headerShadowVisible: false,
+            }}
+          />
+        </Stack.Navigator>
       </NavigationContainer>
+      {/* </SafeAreaView> */}
     </SafeAreaProvider>
   );
 }
@@ -82,14 +83,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    // color: '#3498db',
-    color: 'black',
-    fontSize: 18,
-    fontFamily: 'thin',
-    // textAlign: 'center',
   },
 });
