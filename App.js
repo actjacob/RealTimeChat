@@ -4,9 +4,17 @@ import { StyleSheet, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import ChatListScreen from './screens/ChatListScreen';
+
 import * as Font from 'expo-font';
 
+
 SplashScreen.preventAutoHideAsync();
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
@@ -54,10 +62,18 @@ export default function App() {
       style={styles.container}
       onLayout={onLayout}
     >
-      <SafeAreaView>
-        <StatusBar style="auto" />
-        <Text style={styles.text}> Hello everyone! </Text>
-      </SafeAreaView>
+      <StatusBar style="auto" />
+      <NavigationContainer>
+        <SafeAreaView>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={ChatListScreen}
+            />
+          </Stack.Navigator>
+          <Text style={styles.text}> Hello everyone! </Text>
+        </SafeAreaView>
+      </NavigationContainer>
     </SafeAreaProvider>
   );
 }
