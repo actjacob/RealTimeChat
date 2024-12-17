@@ -2,18 +2,29 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text } from 'react-native';
 import { useCallback, useEffect, useState } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import * as Font from 'expo-font';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import ChatListScreen from './screens/ChatListScreen';
 import ChatSettingsScreen from './screens/ChatSettingsScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="ChatList" component={ChatListScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
+    </Tab.Navigator>
+  );
+};
 
 export default function App() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
@@ -62,7 +73,7 @@ export default function App() {
       {/* <SafeAreaView> */}
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={ChatListScreen} />
+          <Stack.Screen name="Home" component={TabNavigator} />
           <Stack.Screen
             name="ChatSettings"
             component={ChatSettingsScreen}

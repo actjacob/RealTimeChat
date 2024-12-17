@@ -18,3 +18,6 @@ Note:If you are building for Android or iOS, do not skip this step, or your app 
 import "react-native-gesture-handler"(App.js)
 
 (Not:Eğer Android ya da iOS için uygulama geliştiriyorsanız, bu adımı atlamayın. Aksi takdirde uygulamanız üretimde çökebilir, geliştirmede sorunsuz olsa bile.Yani burada, şunu eklememiz gerekiyor çünkü üretimde sorunlar çıkabilir.import "react-native-gesture-handler"(App.js))
+
+Bottom Tabs:
+npm install @react-navigation/bottom-tabs
