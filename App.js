@@ -4,9 +4,13 @@ import { StyleSheet, Text } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import ChatListScreen from './screens/ChatListScreen';
+
+import * as Font from 'expo-font';
+
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,13 +20,31 @@ export default function App() {
   const [appIsLoaded, setAppIsLoaded] = useState(false);
 
   useEffect(() => {
-    //Load Fonts
-    setTimeout(() => {
-      console.log('Setting App is loaded');
-      setAppIsLoaded(true);
-    }, 2000);
-    //2000 ms = 2second
-  });
+    //useEffectin içinde direkt async kullanmamızı sevmiyor o yuzden içeride tanımlamamız gerekiyor
+    const prepare = async () => {
+      try {
+        await Font.loadAsync({
+          black: require('./assets/fonts/Roboto-Black.ttf'),
+          blackItalic: require('./assets/fonts/Roboto-BlackItalic.ttf'),
+          bold: require('./assets/fonts/Roboto-Bold.ttf'),
+          boldItalic: require('./assets/fonts/Roboto-BoldItalic.ttf'),
+          italic: require('./assets/fonts/Roboto-Italic.ttf'),
+          light: require('./assets/fonts/Roboto-Light.ttf'),
+          medium: require('./assets/fonts/Roboto-Medium.ttf'),
+          mediumItalic: require('./assets/fonts/Roboto-MediumItalic.ttf'),
+          ragular: require('./assets/fonts/Roboto-Regular.ttf'),
+          thin: require('./assets/fonts/Roboto-Thin.ttf'),
+          thinItalic: require('./assets/fonts/Roboto-ThinItalic.ttf'),
+        });
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setAppIsLoaded(true);
+      }
+    };
+
+    prepare();
+  }, []);
 
   const onLayout = useCallback(async () => {
     if (appIsLoaded) {
@@ -64,8 +86,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#3498db',
-    fontSize: 24,
-    textAlign: 'center',
+    // color: '#3498db',
+    color: 'black',
+    fontSize: 18,
+    fontFamily: 'thin',
+    // textAlign: 'center',
   },
 });
