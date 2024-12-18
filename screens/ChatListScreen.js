@@ -1,6 +1,5 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import ChatSettingsScreen from './ChatSettingsScreen';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const ChatListScreen = (props) => {
@@ -12,9 +11,9 @@ const ChatListScreen = (props) => {
       <Text style={styles.text}>Deneme</Text>
 
       <Button
-        title="Go to Settings"
+        title="Go to Chat screen"
         onPress={() => {
-          props.navigation.navigate('ChatSettings');
+          props.navigation.navigate('ChatScreen');
         }}
       />
       {/* <Button

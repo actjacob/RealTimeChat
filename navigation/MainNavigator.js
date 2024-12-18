@@ -7,6 +7,7 @@ import Fontisto from '@expo/vector-icons/Fontisto';
 import ChatListScreen from '../screens/ChatListScreen';
 import ChatSettingsScreen from '../screens/ChatSettingsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import ChatScreen from '../screens/ChatScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,6 +46,14 @@ const MainNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
+        options={{
+          headerTitle: '', //username gelicek buraya(dinamik bir şekilde)
+          headerShadowVisible: false,
+        }}
+      />
       <Stack.Screen
         name="ChatSettings"
         component={ChatSettingsScreen}
