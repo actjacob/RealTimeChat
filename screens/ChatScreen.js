@@ -2,6 +2,8 @@ import React, { useCallback, useState } from 'react';
 import {
   Button,
   ImageBackground,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -15,10 +17,11 @@ import {
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 
-import backgroundImage from '../assets/images/goToPurpose.jpg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../constants/colors';
-// import backgroundImage from '../assets/images/droplet.jpeg';
+//import backgroundImage from '../assets/images/goToPurpose.jpg';
+import backgroundImage from '../assets/images/droplet.jpeg';
+//import backgroundImage from '../assets/images/resizePur.jpeg';
 
 const ChatScreen = (props) => {
   // const navigation = useNavigation();
@@ -31,34 +34,42 @@ const ChatScreen = (props) => {
 
   return (
     <SafeAreaView edges={['right', 'left', 'bottom']} style={styles.container}>
-      <ImageBackground source={backgroundImage} style={styles.backgroundImage}></ImageBackground>
+      {/* ios cihaz yada emulatorde textInput a bastığımız zaman klavye çıkıyor ve textInput kısmı altta kalıyor bunun önüne geçebilmek için yapılması gereken bazı aktiviteler var  */}
+      <KeyboardAvoidingView
+        style={styles.screen}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        //behaviore ios cihazlar ile uyumlu çalşıyor ancak android cihazlarda var olan yapıyı bozuyor  bu yüzden Platform.OS ile sadece ios cihazlarda behavior özelliğini kullanıyoruz.
+        keyboardVerticalOffset={100}
+      >
+        <ImageBackground source={backgroundImage} style={styles.backgroundImage}></ImageBackground>
 
-      <View style={styles.inputContainer}>
-        <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
-          <AntDesign name="pluscircleo" size={24} color={colors.blue} />
-        </TouchableOpacity>
-
-        <TextInput
-          style={styles.textBox}
-          value={messageText}
-          onChangeText={(text) => setMessageText(text)}
-          onSubmitEditing={sendMessage}
-        />
-        {messageText === '' && (
+        <View style={styles.inputContainer}>
           <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
-            <Feather name="camera" size={24} color={colors.blue} />
+            <AntDesign name="pluscircleo" size={24} color={colors.blue} />
           </TouchableOpacity>
-        )}
 
-        {messageText !== '' && (
-          <TouchableOpacity
-            style={{ ...styles.mediaButton, ...styles.sendButton }}
-            onPress={sendMessage}
-          >
-            <Feather name="send" size={20} color={'white'} />
-          </TouchableOpacity>
-        )}
-      </View>
+          <TextInput
+            style={styles.textBox}
+            value={messageText}
+            onChangeText={(text) => setMessageText(text)}
+            onSubmitEditing={sendMessage}
+          />
+          {messageText === '' && (
+            <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
+              <Feather name="camera" size={24} color={colors.blue} />
+            </TouchableOpacity>
+          )}
+
+          {messageText !== '' && (
+            <TouchableOpacity
+              style={{ ...styles.mediaButton, ...styles.sendButton }}
+              onPress={sendMessage}
+            >
+              <Feather name="send" size={20} color={'white'} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
@@ -70,6 +81,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     // backgroundColor: '#fff',
+  },
+  screen: {
+    flex: 1,
   },
   backgroundImage: {
     flex: 1,
