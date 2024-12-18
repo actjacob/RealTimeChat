@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Button,
   ImageBackground,
@@ -25,6 +25,10 @@ const ChatScreen = (props) => {
   const [messageText, setMessageText] = useState('');
   console.log(messageText);
 
+  const sendMessage = useCallback(() => {
+    setMessageText('');
+  }, [messageText]);
+
   return (
     <SafeAreaView edges={['right', 'left', 'bottom']} style={styles.container}>
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}></ImageBackground>
@@ -38,6 +42,7 @@ const ChatScreen = (props) => {
           style={styles.textBox}
           value={messageText}
           onChangeText={(text) => setMessageText(text)}
+          onSubmitEditing={sendMessage}
         />
         {messageText === '' && (
           <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
@@ -46,8 +51,11 @@ const ChatScreen = (props) => {
         )}
 
         {messageText !== '' && (
-          <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
-            <Feather name="send" size={24} color={colors.blue} />
+          <TouchableOpacity
+            style={{ ...styles.mediaButton, ...styles.sendButton }}
+            onPress={sendMessage}
+          >
+            <Feather name="send" size={20} color={'white'} />
           </TouchableOpacity>
         )}
       </View>
@@ -90,5 +98,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 35,
     // backgroundColor: 'red',
+  },
+  sendButton: {
+    backgroundColor: colors.blue,
+    borderRadius: 50,
+    width: 35,
+    padding: 7,
   },
 });
