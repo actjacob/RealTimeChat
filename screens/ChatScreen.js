@@ -33,7 +33,10 @@ const ChatScreen = (props) => {
   }, [messageText]);
 
   return (
-    <SafeAreaView edges={['right', 'left', 'bottom']} style={styles.container}>
+    <SafeAreaView
+      edges={['right', 'left', 'bottom']}
+      style={styles.container}
+    >
       {/* ios cihaz yada emulatorde textInput a bastığımız zaman klavye çıkıyor ve textInput kısmı altta kalıyor bunun önüne geçebilmek için yapılması gereken bazı aktiviteler var  */}
       <KeyboardAvoidingView
         style={styles.screen}
@@ -41,11 +44,21 @@ const ChatScreen = (props) => {
         //behaviore ios cihazlar ile uyumlu çalşıyor ancak android cihazlarda var olan yapıyı bozuyor  bu yüzden Platform.OS ile sadece ios cihazlarda behavior özelliğini kullanıyoruz.
         keyboardVerticalOffset={100}
       >
-        <ImageBackground source={backgroundImage} style={styles.backgroundImage}></ImageBackground>
+        <ImageBackground
+          source={backgroundImage}
+          style={styles.backgroundImage}
+        ></ImageBackground>
 
         <View style={styles.inputContainer}>
-          <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
-            <AntDesign name="pluscircleo" size={24} color={colors.blue} />
+          <TouchableOpacity
+            style={styles.mediaButton}
+            onPress={() => console.log('pressed!')}
+          >
+            <AntDesign
+              name="pluscircleo"
+              size={24}
+              color={colors.blue}
+            />
           </TouchableOpacity>
 
           <TextInput
@@ -55,8 +68,15 @@ const ChatScreen = (props) => {
             onSubmitEditing={sendMessage}
           />
           {messageText === '' && (
-            <TouchableOpacity style={styles.mediaButton} onPress={() => console.log('pressed!')}>
-              <Feather name="camera" size={24} color={colors.blue} />
+            <TouchableOpacity
+              style={styles.mediaButton}
+              onPress={() => console.log('pressed!')}
+            >
+              <Feather
+                name="camera"
+                size={24}
+                color={colors.blue}
+              />
             </TouchableOpacity>
           )}
 
@@ -65,7 +85,11 @@ const ChatScreen = (props) => {
               style={{ ...styles.mediaButton, ...styles.sendButton }}
               onPress={sendMessage}
             >
-              <Feather name="send" size={20} color={'white'} />
+              <Feather
+                name="send"
+                size={20}
+                color={'white'}
+              />
             </TouchableOpacity>
           )}
         </View>
