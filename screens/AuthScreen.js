@@ -35,7 +35,11 @@ const AuthScreen = () => {
           iconSize={20}
         />
 
-        <SubmitButton disabled={true} />
+        <SubmitButton
+          title="Sign Up"
+          onPress={() => console.log('Button Pressed)')}
+          style={{ marginTop: 20 }}
+        />
       </PageContainer>
     </SafeAreaView>
   );
