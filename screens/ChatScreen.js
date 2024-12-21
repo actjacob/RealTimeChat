@@ -20,8 +20,9 @@ import Feather from '@expo/vector-icons/Feather';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../constants/colors';
 //import backgroundImage from '../assets/images/goToPurpose.jpg';
-import backgroundImage from '../assets/images/droplet.jpeg';
+// import backgroundImage from '../assets/images/droplet.jpeg';
 //import backgroundImage from '../assets/images/resizePur.jpeg';
+import backgroundImage from '../assets/images/WhiteHouseatNight.jpeg';
 
 const ChatScreen = (props) => {
   // const navigation = useNavigation();

@@ -1,45 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PageContainer from '../components/PageContainer';
-import Input from '../components/Input';
-import { Feather, FontAwesome } from '@expo/vector-icons';
-import SubmitButton from '../components/SubmitButton';
+
+import SignUpForm from '../components/SignUpForm';
+import SignInForm from '../components/SignInForm';
+import colors from '../constants/colors';
 
 const AuthScreen = () => {
+  const [isSignUp, setIsSignUp] = useState(false);
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <PageContainer>
-        <Input
-          label="First name"
-          icon="user-o"
-          iconPack={FontAwesome}
-          iconSize={20}
-        />
-        <Input
-          label="Last name"
-          icon="user-o"
-          iconPack={FontAwesome}
-          iconSize={20}
-        />
-        <Input
-          label="E-mail"
-          icon="mail"
-          iconPack={Feather}
-          iconSize={20}
-        />
-        <Input
-          label="Password"
-          icon="lock"
-          iconPack={Feather}
-          iconSize={20}
-        />
-
-        <SubmitButton
-          title="Sign Up"
-          onPress={() => console.log('Button Pressed)')}
-          style={{ marginTop: 20 }}
-        />
+        {isSignUp ? <SignUpForm /> : <SignInForm />}
+        <TouchableOpacity
+          onPress={() => setIsSignUp((prevState) => !prevState)}
+          style={styles.linkContainer}
+        >
+          <Text style={styles.link}>
+            {`Switch to ${isSignUp ? 'Sign in' : 'Sign up'}`}
+          </Text>
+        </TouchableOpacity>
       </PageContainer>
     </SafeAreaView>
   );
@@ -47,4 +28,15 @@ const AuthScreen = () => {
 
 export default AuthScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  linkContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 15,
+  },
+  link: {
+    color: colors.blue,
+    fontFamily: 'medium',
+    letterSpacing: 0.3,
+  },
+});
