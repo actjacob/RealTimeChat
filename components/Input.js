@@ -4,6 +4,10 @@ import colors from '../constants/colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const Input = (props) => {
+  const onChangeText = (text) => {
+    props.onInputChanged(props.id, text);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label} </Text>
@@ -16,7 +20,10 @@ const Input = (props) => {
             style={styles.icon}
           />
         )}
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeText}
+        />
       </View>
 
       {props.errorText && (
@@ -52,6 +59,7 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
     color: colors.gray,
+    size: 20,
   },
   input: {
     color: colors.textColor,
