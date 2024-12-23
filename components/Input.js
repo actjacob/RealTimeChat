@@ -21,6 +21,7 @@ const Input = (props) => {
           />
         )}
         <TextInput
+          {...props}
           style={styles.input}
           onChangeText={onChangeText}
         />
