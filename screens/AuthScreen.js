@@ -16,7 +16,7 @@ import SignUpForm from '../components/SignUpForm';
 import SignInForm from '../components/SignInForm';
 import colors from '../constants/colors';
 
-import logo from '../assets/images/logo3.png';
+import logo from '../assets/images/logo.png';
 
 const AuthScreen = () => {
   const [isSignUp, setIsSignUp] = useState(false);

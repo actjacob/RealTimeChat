@@ -5,8 +5,16 @@ import SubmitButton from '../components/SubmitButton';
 import { validateInput } from '../utils/actions/formActions';
 import { validate } from 'validate.js';
 import { reducer } from '../utils/reducers/formReducer';
+import { signUp } from '../utils/actions/authActions';
 
 const initialState = {
+  inputValues: {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  },
+
   inputValidities: {
     firstName: false,
     lastName: false,
@@ -25,11 +33,20 @@ const SignUpForm = (props) => {
       dispatchFormState({
         inputId,
         validationResult: result,
+        inputValue,
       });
     },
     [dispatchFormState]
   );
 
+  const authHandler = () => {
+    signUp(
+      formState.inputValues.firstName,
+      formState.inputValues.lastName,
+      formState.inputValues.email,
+      formState.inputValues.password
+    );
+  };
   return (
     <>
       <Input
@@ -77,7 +94,7 @@ const SignUpForm = (props) => {
 
       <SubmitButton
         title="Sign Up"
-        onPress={() => console.log('Button Pressed)')}
+        onPress={authHandler}
         style={{ marginTop: 20 }}
         disabled={!formState.formIsValid}
       />
