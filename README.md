@@ -21,3 +21,7 @@ import "react-native-gesture-handler"(App.js)
 
 Bottom Tabs:
 npm install @react-navigation/bottom-tabs
+
+Firebase connection
+
+npm install firebase

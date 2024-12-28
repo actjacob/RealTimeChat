@@ -22,7 +22,8 @@ import colors from '../constants/colors';
 //import backgroundImage from '../assets/images/goToPurpose.jpg';
 //import backgroundImage from '../assets/images/droplet.jpeg';
 //import backgroundImage from '../assets/images/resizePur.jpeg';
-import backgroundImage from '../assets/images/WhiteHouseatNight.jpeg';
+import backgroundImage from '../assets/images/The_School_of_Athen_Raffaello_Sanzio.jpg';
+//import backgroundImage from '../assets/images/WhiteHouseatNight.jpeg';
 
 const ChatScreen = (props) => {
   // const navigation = useNavigation();
@@ -41,7 +42,7 @@ const ChatScreen = (props) => {
       {/* ios cihaz yada emulatorde textInput a bastığımız zaman klavye çıkıyor ve textInput kısmı altta kalıyor bunun önüne geçebilmek için yapılması gereken bazı aktiviteler var  */}
       <KeyboardAvoidingView
         style={styles.screen}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'height' : undefined}
         //behaviore ios cihazlar ile uyumlu çalşıyor ancak android cihazlarda var olan yapıyı bozuyor  bu yüzden Platform.OS ile sadece ios cihazlarda behavior özelliğini kullanıyoruz.
         keyboardVerticalOffset={100}
       >
