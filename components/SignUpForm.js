@@ -6,7 +6,7 @@ import { validateInput } from '../utils/actions/formActions';
 import { validate } from 'validate.js';
 import { reducer } from '../utils/reducers/formReducer';
 import { signUp } from '../utils/actions/authActions';
-import { getFirebaseApp } from '../utils/firabaseHelper';
+import { getFirebaseApp } from '../utils/firebaseHelper';
 import { ActivityIndicator, Alert } from 'react-native';
 import colors from '../constants/colors';
 

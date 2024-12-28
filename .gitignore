@@ -2,7 +2,7 @@
 
 # dependencies
 node_modules/
-utils/firebaseHelper.js
+
 
 
 # Expo
@@ -38,3 +38,4 @@ yarn-error.*
 *.tsbuildinfo
 
 #Api
+utils/firebaseHelper.js
