@@ -25,3 +25,6 @@ npm install @react-navigation/bottom-tabs
 Firebase connection
 
 npm install firebase
+
+REDUX TOOLKIT
+npm install @reduxjs/toolkit react-redux
