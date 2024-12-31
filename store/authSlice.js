@@ -10,6 +10,7 @@ const authSlice = createSlice({
       authenticate: (state, action) => {
          const { payload } = action;
          state.token = payload.token;
+         state.userData = payload.userData;
       },
    },
 });
